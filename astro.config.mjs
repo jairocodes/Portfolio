@@ -9,7 +9,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://portfolio-3ayb7t81r-jairo-castillo.vercel.app',
 
   i18n: {
     locales: ['es', 'en'],
