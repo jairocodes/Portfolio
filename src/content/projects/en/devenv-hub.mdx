@@ -1,0 +1,17 @@
+---
+title: "DevEnv Hub"
+summary: "CLI + REST API that lets teams define, share, and spin up reproducible development environments with Docker Compose."
+problem: "Getting a development environment consistent across a team (same runtime versions, same dependencies, same config) usually relies on manual instructions that go stale and end in the classic 'works on my machine'."
+solution: "I built a CLI (Click) and an API (FastAPI) that define environments as versioned templates (Node, Django, Laravel, Spring) and spin them up via Docker Compose with real per-environment isolation: each one runs in its own network, container, and volume namespace, with JWT auth, per-user configurable CPU/memory quotas, live usage metrics over WebSocket, and an admin role to manage quotas."
+role: "Sole developer (backend, CLI, and infrastructure)"
+stack: ["Python", "FastAPI", "Docker SDK", "Docker Compose", "PostgreSQL", "Redis", "WebSockets"]
+category: "infra"
+links:
+  repo: "https://github.com/jairocodes/DevEnvHub"
+featured: true
+order: 1
+---
+
+The template system works like a CLI-only "Spring Initializr": each template declares its options (runtime version, whether to include Postgres/Redis, server type) in a `template.yaml`, and `devenv up` either asks for them interactively or accepts them all at once with `--set key=value --yes` for scripted use.
+
+The admin role has no self-promotion endpoint — it bootstraps from an email allowlist (`ADMIN_EMAILS`) that auto-promotes on next login, avoiding an unnecessary privilege-escalation surface.

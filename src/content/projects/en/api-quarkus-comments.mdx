@@ -1,0 +1,17 @@
+---
+title: "Projects & Comments API (Quarkus + JSF)"
+summary: "Quarkus REST API to manage projects and comments, with an automated daily email report, and a JSF/PrimeFaces frontend consuming it."
+problem: "A backend was needed to manage projects and their comments, with periodic reports for an administrator, without exposing credentials in code or coupling the frontend directly to the backend."
+solution: "I built a Quarkus API on top of MySQL that exposes the projects and comments resources. All sensitive configuration (database and SMTP credentials) is injected via environment variables, and a scheduled job generates a daily CSV report of comments that gets emailed to the admin. The frontend, in a separate repository, is a JSF + PrimeFaces (Jakarta EE) app that consumes this API through a configurable URL."
+role: "Backend (Quarkus/MySQL) and frontend (JSF/PrimeFaces)"
+stack: ["Java", "Quarkus", "MySQL", "JSF", "PrimeFaces"]
+category: "backend"
+links:
+  repo: "https://github.com/jairocodes/APIQuarkus"
+featured: true
+order: 4
+---
+
+The frontend lives in a separate repository: [InterfazGraficaPrimerfaces](https://github.com/jairocodes/InterfazGraficaPrimerfaces). It talks to the API purely over HTTP through an environment variable (`API_BASE_URL`), which lets each part be deployed and versioned independently.
+
+The daily report email goes out through Resend over SMTP, and both the CSV output path and the report recipient are configurable via environment variable instead of being hardcoded.

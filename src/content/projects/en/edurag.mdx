@@ -1,0 +1,17 @@
+---
+title: "EduRAG"
+summary: "Educational management platform with a RAG chat that answers questions about course material, citing the exact source."
+problem: "Finding specific information inside lengthy academic PDFs is slow for students, and professors end up answering the same questions repeatedly from different students."
+solution: "I built a FastAPI backend that processes PDFs uploaded per course (text extraction with pdfplumber, chunking with LangChain, embeddings with OpenAI) and indexes them in Postgres with pgvector/HNSW. A chat on the frontend (Vue 3) lets users ask questions in natural language and answers by citing the material and the exact excerpt each answer came from, alongside an admin panel with CRUD for courses, students, materials, and enrollments, plus an analytics dashboard."
+role: "Sole developer (backend, frontend, and AI)"
+stack: ["Python", "FastAPI", "Vue", "Supabase", "PostgreSQL", "pgvector", "OpenAI API", "LangChain"]
+category: "ai"
+links:
+  repo: "https://github.com/jairocodes/EduRAG"
+featured: true
+order: 3
+---
+
+A PDF's ingestion pipeline moves through four states visible in the UI (`pending` → `processing` → `completed`/`failed`): text is extracted, split into overlapping chunks so context isn't lost between fragments, embeddings are generated, and everything is indexed with an HNSW index so semantic search stays fast even with many materials.
+
+The analytics panel aggregates per-course metrics (materials, enrollments, popularity) and cohort distribution, useful for a coordinator to see the overall state without running manual database queries.

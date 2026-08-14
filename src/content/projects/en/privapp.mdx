@@ -1,0 +1,17 @@
+---
+title: "PrivApp — AI-Powered Privacy Policy Analysis"
+summary: "Web system that analyzes privacy policies with RAG over a real regulatory corpus and translates their implications into plain language."
+problem: "Users (young people in particular) accept digital services' privacy policies without understanding them: they're lengthy documents in technical legal language that make it hard to know what data is collected and for what purpose."
+solution: "I built a system with a RAG (Retrieval-Augmented Generation) architecture: a verifiable regulatory corpus (Guatemalan and international regulations, standards like OPP-115) is indexed with pgvector, and for each submitted policy the system retrieves the relevant regulatory sections and uses Gemini or OpenIA to generate an analysis grounded in those real sources, not the model's unconstrained judgment."
+role: "Sole developer (backend, AI, and infrastructure)"
+stack: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Gemini", "OpenIA", "React", "TypeScript", "Docker"]
+category: "ai"
+links:
+  repo: "https://github.com/jairocodes/PrivApp"
+featured: true
+order: 2
+---
+
+Policies can be submitted as raw text or by URL. Embeddings for the regulatory corpus are generated locally with Sentence Transformers (a multilingual model) instead of relying on an external API for that step, avoiding sending the entire legal corpus to a third party just to index it.
+
+The backend exposes interactive docs via Swagger UI and runs alongside the frontend (React + TypeScript) with Docker Compose, with JWT auth to separate user sessions.

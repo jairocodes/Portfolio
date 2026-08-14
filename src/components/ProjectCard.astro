@@ -1,0 +1,38 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Badge from "./ui/Badge.astro";
+import type { Lang } from "../i18n/ui";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  slug: string;
+  lang: Lang;
+}
+
+const { project, slug, lang } = Astro.props;
+const { title, summary, stack, category } = project.data;
+const visibleStack = stack.slice(0, 4);
+const extraCount = stack.length - visibleStack.length;
+---
+
+<a
+  href={`/${lang}/projects/${slug}`}
+  class="group relative block overflow-hidden rounded-lg border border-ink-600 bg-ink-800 p-6 transition-colors hover:border-accent"
+>
+  <span
+    class="absolute left-0 top-0 h-full w-0.5 bg-transparent transition-colors group-hover:bg-accent"
+  ></span>
+  <p class="font-mono text-xs uppercase tracking-wide text-mist-400">{category ?? "project"}/</p>
+  <h3 class="mt-1 font-mono text-lg text-mist-100 transition-colors group-hover:text-accent">
+    {title}
+  </h3>
+  <p class="mt-3 text-sm text-mist-400">{summary}</p>
+  <div class="mt-4 flex flex-wrap gap-2">
+    {visibleStack.map((tech) => <Badge label={tech} variant="lang" />)}
+    {extraCount > 0 && (
+      <span class="inline-flex items-center rounded-md border border-ink-600 px-2.5 py-1 font-mono text-xs text-mist-400">
+        +{extraCount}
+      </span>
+    )}
+  </div>
+</a>

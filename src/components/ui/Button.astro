@@ -1,0 +1,23 @@
+---
+interface Props {
+  href: string;
+  variant?: "primary" | "ghost";
+  target?: "_blank";
+}
+
+const { href, variant = "ghost", target } = Astro.props;
+
+const styles = {
+  primary: "border-accent bg-accent/10 text-accent hover:bg-accent/20",
+  ghost: "border-ink-600 text-mist-100 hover:border-accent hover:text-accent",
+}[variant];
+---
+
+<a
+  href={href}
+  target={target}
+  rel={target === "_blank" ? "noopener noreferrer" : undefined}
+  class={`inline-flex items-center gap-2 rounded-md border px-4 py-2 font-mono text-sm transition-colors ${styles}`}
+>
+  <slot />
+</a>

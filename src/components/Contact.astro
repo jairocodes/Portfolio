@@ -1,0 +1,50 @@
+---
+import SectionHeading from "./ui/SectionHeading.astro";
+import TerminalWindow from "./ui/TerminalWindow.astro";
+import { useTranslations, type Lang } from "../i18n/ui";
+import { SITE } from "../lib/site";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id="contact" class="py-20 sm:py-28">
+  <div class="mx-auto max-w-[1100px] px-6">
+    <SectionHeading index={4} label={t("section.contact")} />
+    <div class="mx-auto max-w-lg">
+      <TerminalWindow title="~/contact — zsh">
+        <ul class="space-y-3">
+          <li>
+            <a href={`mailto:${SITE.email}`} class="flex items-center gap-2 text-mist-100 hover:text-accent">
+              <span class="text-accent">$</span> {t("contact.email")}
+            </a>
+          </li>
+          <li>
+            <a
+              href={SITE.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 text-mist-100 hover:text-accent"
+            >
+              <span class="text-accent">$</span> {t("contact.github")}
+            </a>
+          </li>
+          <li>
+            <a
+              href={SITE.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-2 text-mist-100 hover:text-accent"
+            >
+              <span class="text-accent">$</span> {t("contact.linkedin")}
+            </a>
+          </li>
+        </ul>
+      </TerminalWindow>
+    </div>
+  </div>
+</section>

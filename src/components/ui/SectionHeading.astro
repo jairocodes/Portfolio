@@ -1,0 +1,13 @@
+---
+interface Props {
+  index: number;
+  label: string;
+}
+
+const { index, label } = Astro.props;
+const padded = String(index).padStart(2, "0");
+---
+
+<h2 class="mb-10 font-mono text-2xl font-medium text-mist-100 sm:text-3xl">
+  <span class="text-accent">{`// `}</span>{padded}. {label}
+</h2>

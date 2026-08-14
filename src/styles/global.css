@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/700.css";
+@import "@fontsource/space-grotesk/400.css";
+@import "@fontsource/space-grotesk/500.css";
+@import "@fontsource/space-grotesk/700.css";
+
+@theme {
+  --color-ink-900: #0b0e14;
+  --color-ink-800: #11151c;
+  --color-ink-700: #161b24;
+  --color-ink-600: #1f2733;
+
+  --color-mist-100: #e6edf3;
+  --color-mist-400: #8b949e;
+
+  --color-accent: #63e6be;
+  --color-accent-dim: #3fa98a;
+
+  --color-syntax-lang: #79c0ff;
+  --color-syntax-domain: #e3b341;
+  --color-syntax-infra: #d2a8ff;
+
+  --font-mono: "JetBrains Mono", ui-monospace, "Courier New", monospace;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-ink-900 text-mist-100 font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-mist-100;
+  }
+}

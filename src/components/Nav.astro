@@ -1,0 +1,39 @@
+---
+import { useTranslations, type Lang } from "../i18n/ui";
+import { SITE } from "../lib/site";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const otherLang: Lang = lang === "es" ? "en" : "es";
+const altPath = Astro.url.pathname.replace(new RegExp(`^/${lang}(/|$)`), `/${otherLang}$1`);
+---
+
+<header class="sticky top-0 z-50 border-b border-ink-600 bg-ink-900/90 backdrop-blur">
+  <nav class="mx-auto flex max-w-[1100px] items-center justify-between px-6 py-4">
+    <a href={`/${lang}/`} class="font-mono text-sm text-mist-100">
+      <span class="text-accent">&gt;_</span> {SITE.name.split(" ")[0].toLowerCase()}
+    </a>
+    <div class="flex items-center gap-6 font-mono text-sm">
+      <a href={`/${lang}/#projects`} class="text-mist-400 transition-colors hover:text-accent">
+        {t("nav.projects")}
+      </a>
+      <a href={`/${lang}/#about`} class="text-mist-400 transition-colors hover:text-accent">
+        {t("nav.about")}
+      </a>
+      <a href={`/${lang}/#contact`} class="text-mist-400 transition-colors hover:text-accent">
+        {t("nav.contact")}
+      </a>
+      <a
+        href={altPath}
+        class="rounded-md border border-ink-600 px-2 py-1 text-xs uppercase text-mist-400 transition-colors hover:border-accent hover:text-accent"
+      >
+        {otherLang}
+      </a>
+    </div>
+  </nav>
+</header>

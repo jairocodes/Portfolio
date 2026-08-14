@@ -1,0 +1,21 @@
+---
+import "../styles/global.css";
+import { defaultLang } from "../i18n/ui";
+---
+
+<!doctype html>
+<html lang={defaultLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>404 — command not found</title>
+  </head>
+  <body class="flex min-h-screen flex-col items-center justify-center gap-4 bg-ink-900 px-6 text-center">
+    <p class="font-mono text-sm text-mist-400">$ cd {Astro.url.pathname}</p>
+    <h1 class="font-mono text-2xl text-accent">command not found: 404</h1>
+    <a href={`/${defaultLang}/`} class="font-mono text-sm text-mist-100 underline hover:text-accent">
+      cd ~/
+    </a>
+  </body>
+</html>

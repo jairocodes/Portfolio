@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import ProjectsGrid from "../../components/ProjectsGrid.astro";
+import AboutMe from "../../components/AboutMe.astro";
+import Contact from "../../components/Contact.astro";
+import { useTranslations, ui, type Lang } from "../../i18n/ui";
+import { SITE } from "../../lib/site";
+
+export function getStaticPaths() {
+  return Object.keys(ui).map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} title={`${SITE.name} — ${SITE.role}`} description={t("site.description")}>
+  <Hero lang={lang} />
+  <ProjectsGrid lang={lang} />
+  <AboutMe lang={lang} />
+  <Contact lang={lang} />
+</BaseLayout>

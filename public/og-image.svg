@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0B0E14" />
+  <rect x="0" y="0" width="1200" height="630" fill="url(#dots)" opacity="0.5" />
+  <defs>
+    <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="1" fill="#1F2733" />
+    </pattern>
+  </defs>
+
+  <rect x="120" y="140" width="960" height="350" rx="14" fill="#11151C" stroke="#1F2733" stroke-width="2" />
+  <rect x="120" y="140" width="960" height="52" rx="14" fill="#161B24" stroke="#1F2733" stroke-width="2" />
+  <circle cx="156" cy="166" r="7" fill="#FF5F56" />
+  <circle cx="180" cy="166" r="7" fill="#FFBD2E" />
+  <circle cx="204" cy="166" r="7" fill="#27C93F" />
+  <text x="600" y="172" text-anchor="middle" font-family="monospace" font-size="16" fill="#8B949E">~/portfolio — zsh</text>
+
+  <text x="160" y="270" font-family="monospace" font-size="26" fill="#63E6BE">$ whoami</text>
+  <text x="160" y="330" font-family="monospace" font-size="44" font-weight="700" fill="#E6EDF3">Jairo Castillo</text>
+  <text x="160" y="380" font-family="monospace" font-size="24" fill="#8B949E">Full Stack Developer &amp; Application Support Engineer</text>
+  <text x="160" y="440" font-family="monospace" font-size="20" fill="#8B949E">Python · Java · TypeScript · Applied AI · Docker · Linux</text>
+</svg>

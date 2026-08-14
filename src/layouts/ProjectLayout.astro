@@ -1,0 +1,66 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import Badge from "../components/ui/Badge.astro";
+import MetricsRow from "../components/ui/MetricsRow.astro";
+import Button from "../components/ui/Button.astro";
+import { useTranslations, type Lang } from "../i18n/ui";
+
+interface Props {
+  lang: Lang;
+  project: CollectionEntry<"projects">;
+}
+
+const { lang, project } = Astro.props;
+const t = useTranslations(lang);
+const { title, summary, problem, solution, role, stack, metrics, links } = project.data;
+---
+
+<BaseLayout lang={lang} title={`${title} — ${t("projects.viewCase")}`} description={summary}>
+  <article class="py-16 sm:py-24">
+    <div class="mx-auto max-w-[800px] px-6">
+      <a href={`/${lang}/#projects`} class="font-mono text-sm text-mist-400 hover:text-accent">
+        {t("project.back")}
+      </a>
+
+      <h1 class="mt-6 font-mono text-3xl text-mist-100 sm:text-4xl">{title}</h1>
+      {role && <p class="mt-2 text-mist-400">{role}</p>}
+
+      <div class="mt-4 flex flex-wrap gap-2">
+        {stack.map((tech) => <Badge label={tech} variant="lang" />)}
+      </div>
+
+      {links && (links.repo || links.demo) && (
+        <div class="mt-6 flex flex-wrap gap-3">
+          {links.repo && (
+            <Button href={links.repo} target="_blank">
+              {t("project.repo")}
+            </Button>
+          )}
+          {links.demo && (
+            <Button href={links.demo} target="_blank" variant="primary">
+              {t("project.demo")}
+            </Button>
+          )}
+        </div>
+      )}
+
+      <div class="mt-12 space-y-8">
+        <div>
+          <h2 class="font-mono text-sm uppercase tracking-wide text-accent">{t("project.problem")}</h2>
+          <p class="mt-2 leading-relaxed text-mist-100">{problem}</p>
+        </div>
+        <div>
+          <h2 class="font-mono text-sm uppercase tracking-wide text-accent">{t("project.solution")}</h2>
+          <p class="mt-2 leading-relaxed text-mist-100">{solution}</p>
+        </div>
+
+        {metrics && metrics.length > 0 && <MetricsRow metrics={metrics} />}
+
+        <div class="prose-invert max-w-none leading-relaxed text-mist-100 [&_p]:mt-4">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

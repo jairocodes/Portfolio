@@ -1,0 +1,64 @@
+---
+import TerminalWindow from "./ui/TerminalWindow.astro";
+import Button from "./ui/Button.astro";
+import { useTranslations, type Lang } from "../i18n/ui";
+import { SITE } from "../lib/site";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section class="hero-dots relative overflow-hidden py-24 sm:py-32">
+  <div class="mx-auto max-w-[1100px] px-6">
+    <div class="mx-auto max-w-xl">
+      <TerminalWindow title="~/portfolio — zsh">
+        <p><span class="text-accent">$</span> {t("hero.greeting")}</p>
+        <p class="typewriter mt-3 text-lg text-mist-100 sm:text-xl">{SITE.name}</p>
+        <p class="mt-1 text-mist-400">{SITE.role}</p>
+      </TerminalWindow>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <Button href="#projects" variant="primary">{t("hero.cta.projects")}</Button>
+        <Button href="#contact">{t("hero.cta.contact")}</Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-dots {
+    background-image: radial-gradient(var(--color-ink-600) 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-position: center;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+  }
+
+  .typewriter {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid var(--color-accent);
+    width: 0;
+    animation:
+      typing 1.6s steps(20, end) forwards,
+      blink 0.75s step-end infinite;
+  }
+
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+
+  @keyframes blink {
+    50% {
+      border-color: transparent;
+    }
+  }
+</style>

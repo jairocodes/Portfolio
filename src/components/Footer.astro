@@ -1,0 +1,16 @@
+---
+import type { Lang } from "../i18n/ui";
+import { SITE } from "../lib/site";
+
+interface Props {
+  lang: Lang;
+}
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-ink-600">
+  <div class="mx-auto max-w-[1100px] px-6 py-8 text-center font-mono text-xs text-mist-400">
+    <p>{SITE.name} — {year}</p>
+  </div>
+</footer>

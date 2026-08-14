@@ -1,0 +1,17 @@
+---
+title: "PrivApp — Análisis de Políticas de Privacidad con IA"
+summary: "Sistema web que analiza políticas de privacidad con RAG sobre un corpus normativo real y traduce sus implicaciones a lenguaje accesible."
+problem: "Los usuarios (en particular jóvenes) aceptan políticas de privacidad de servicios digitales sin entenderlas: son documentos extensos, con lenguaje legal técnico, que dificultan saber qué datos se recopilan y con qué fines."
+solution: "Desarrollé un sistema con arquitectura RAG (Retrieval-Augmented Generation): un corpus normativo verificable (normativa guatemalteca e internacional, estándares como OPP-115) se indexa con pgvector, y ante cada política ingresada el sistema recupera las secciones normativas relevantes y usa Gemini u OpenIA para generar un análisis fundamentado en esas fuentes reales, no en el criterio libre del modelo."
+role: "Desarrollador único (backend, IA e infraestructura)"
+stack: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Gemini", "OpenIA", "React", "TypeScript", "Docker"]
+category: "ai"
+links:
+  repo: "https://github.com/jairocodes/PrivApp"
+featured: true
+order: 2
+---
+
+Las políticas se pueden ingresar como texto directo o por URL. Los embeddings del corpus normativo se generan localmente con Sentence Transformers (modelo multilingüe) en vez de depender de una API externa para esa parte, lo que evita enviar el corpus legal completo a un tercero solo para indexarlo.
+
+El backend expone su documentación interactiva vía Swagger UI y corre junto al frontend (React + TypeScript) con Docker Compose, con autenticación JWT para separar sesiones de usuario.
